@@ -1,7 +1,6 @@
 package main;
 
 import db.Laptop;
-import filters.Filter;
 import filters.LaptopFilters;
 import filters.impl.ExactValueFilter;
 import filters.impl.LessThanFilter;
@@ -10,10 +9,8 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-
-import java.sql.ResultSet;
 import java.util.List;
-import java.util.Random;
+
 
 public class Runner {
       private static Predicate getPredicate(CriteriaBuilder builder, Root<Laptop> root, LaptopFilters filters) {

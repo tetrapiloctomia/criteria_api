@@ -5,9 +5,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class GreaterThanFilter<T extends Comparable> implements Filter {
-    private String name;
-    private T value;
+public class GreaterThanFilter<T extends Comparable<T>> implements Filter<T> {
+    private final String name;
+    private final T value;
 
     public GreaterThanFilter(String name, T value) {
         this.name = name;
@@ -19,7 +19,7 @@ public class GreaterThanFilter<T extends Comparable> implements Filter {
     }
 
     @Override
-    public Predicate getPredicate(CriteriaBuilder builder, Root root) {
+    public Predicate getPredicate(CriteriaBuilder builder, Root<?> root) {
         return builder.greaterThan(root.get(name), value);
     }
 }

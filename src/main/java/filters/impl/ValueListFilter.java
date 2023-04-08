@@ -8,7 +8,7 @@ import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValueListFilter<T> implements Filter {
+public class ValueListFilter<T> implements Filter<T> {
     String name;
     List<T> values = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class ValueListFilter<T> implements Filter {
     }
 
     @Override
-    public Predicate getPredicate(CriteriaBuilder builder, Root root) {
+    public Predicate getPredicate(CriteriaBuilder builder, Root<?> root) {
         CriteriaBuilder.In<T> inClause = builder.in(root.get(name));
         values.forEach(inClause::value);
         return inClause;

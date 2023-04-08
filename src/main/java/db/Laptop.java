@@ -109,7 +109,7 @@ public class Laptop {
         return new LaptopBuilder();
     }
     public static class LaptopBuilder {
-        private static Laptop instance = new Laptop();
+        private static final Laptop instance = new Laptop();
 
         public LaptopBuilder name(String name) {
             instance.name = name;

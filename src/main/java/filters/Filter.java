@@ -6,5 +6,5 @@ import jakarta.persistence.criteria.Root;
 
 public interface Filter<T> {
     String getName();
-    Predicate getPredicate(CriteriaBuilder builder, Root root);
+    Predicate getPredicate(CriteriaBuilder builder, Root<?> root);
 }

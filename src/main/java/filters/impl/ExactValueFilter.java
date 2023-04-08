@@ -5,9 +5,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class ExactValueFilter<T> implements Filter {
-    private String name;
-    private T value;
+public class ExactValueFilter<T> implements Filter<T> {
+    private final String name;
+    private final T value;
 
     public ExactValueFilter(String name, T value) {
         this.name = name;
@@ -19,7 +19,7 @@ public class ExactValueFilter<T> implements Filter {
     }
 
     @Override
-    public Predicate getPredicate(CriteriaBuilder builder, Root root) {
+    public Predicate getPredicate(CriteriaBuilder builder, Root<?> root) {
         return builder.equal(root.get(name), value);
     }
 }

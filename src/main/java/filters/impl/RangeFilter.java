@@ -5,7 +5,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class RangeFilter<T extends Comparable> implements Filter {
+public class RangeFilter<T extends Comparable<T>> implements Filter<T> {
     private String name;
     private T upper;
     private T lower;
@@ -15,7 +15,7 @@ public class RangeFilter<T extends Comparable> implements Filter {
     }
 
     @Override
-    public Predicate getPredicate(CriteriaBuilder builder, Root root) {
+    public Predicate getPredicate(CriteriaBuilder builder, Root<?> root) {
         return builder.between(root.get(name), lower, upper);
     }
 }
